@@ -1,0 +1,4 @@
+config/config.js
+docs/*
+node_modules/*
+.tags

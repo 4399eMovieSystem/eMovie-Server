@@ -1,0 +1,79 @@
+/*
+ * User model
+ * @create 2017/4/29
+ * @author 陈海城
+ */
+const { queryDb } = require('../services/db');
+
+module.exports = {
+	findRegisterByPhone,
+	createOneRegisterRecord,
+	updateRegisterTime,
+	findUserByPhone,
+	createUser
+}
+
+/*
+ * @description 根据 phone 查找注册码
+ * @author 陈海城
+ */
+function findRegisterByPhone(phone) {
+	const sql = `
+		SELECT *
+		FROM register
+		WHERE phone = ?;
+	`;
+	return queryDb(sql, [ phone ]);
+}
+
+/*
+ * @description 插入一条注册记录
+ * @author 陈海城
+ */
+function createOneRegisterRecord(phone, code) {
+	const sql = `
+		INSERT INTO register
+		SET ?;
+	`;
+	const values = { phone, code };
+	return queryDb(sql, values);
+}
+
+/*
+ * @description 更新注册记录时间
+ * @author 陈海城
+ */
+function updateRegisterTime(phone, code, create_at) {
+	const sql = `
+		UPDATE register
+		SET create_at = ?, code = ?
+		WHERE phone = ?;
+	`;
+	return queryDb(sql, [ create_at, code, phone ]);
+}
+
+/*
+ * @description 根据 phone 查找用户
+ * @author 陈海城
+ */
+function findUserByPhone(phone) {
+	const sql = `
+		SELECT *
+		FROM user
+		WHERE phone = ?;
+	`;
+	return queryDb(sql, [ phone ]);
+}
+
+/*
+ * @description 创建用户
+ * @author 陈海城
+ */
+function createUser(phone, password, name = null, pay_num = null) {
+	const sql = `
+		INSERT INTO user
+		SET ?;
+	`;
+	const values = { phone, password, name, pay_num };
+	return queryDb(sql, values);
+}
