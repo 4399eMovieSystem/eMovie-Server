@@ -1,5 +1,5 @@
 /**
- * @api {get} {url}/api/movies/:mov_id/seats?vh_id={...}
+ * @api {get} {url}/api/movies/:mov_id/seats?vh_id={...} 获取选定影厅的座位状态信息
  * @apiName getSeatsInfo
  * @apiGroup Movie
  * 
