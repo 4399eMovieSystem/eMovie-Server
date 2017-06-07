@@ -1,4 +1,4 @@
-/*
+/**
  * @description Movie book router
  * @author 陈海城
  */

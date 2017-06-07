@@ -5,6 +5,7 @@
 const router = require('express').Router();
 const mvCtrl = require('../controllers/movie.controller');
 const mdRtr = require('./movie_order.router');
+const msRtr = require('./movie_seat.router');
 
 module.exports = app => app.use('/api/movies', router);
 
@@ -16,3 +17,5 @@ router.get('/:mov_id/cinemas', mvCtrl.getMovieAndPlayingDetail);
 
 // 挂载子路由
 mdRtr(router);
+
+msRtr(router);

@@ -1,4 +1,4 @@
-/*
+/**
  * @description Movie controller
  * @create at 2017/4/30
  * @author 陈海城
@@ -58,7 +58,7 @@ function* getMovieDetail(req, res, next) {
 	return sendData(req, res, 'OK', req.paramData.movie, '电影信息获取成功');
 }
 
-/*
+/**
  * @description 获取 某部电影+播放 信息
  * @author 陈海城
  */

@@ -50,6 +50,7 @@ function* sendSms(req, res, next) {
     }
 
     data = yield smsSend(phone, code);
+    // console.log(data);
     if (data.alibaba_aliqin_fc_sms_num_send_response &&
         data.alibaba_aliqin_fc_sms_num_send_response.result.success) {
       if (isFirst)

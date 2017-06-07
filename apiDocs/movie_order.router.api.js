@@ -1,5 +1,5 @@
 /**
- * @api {post} {url}/api/movies/:mov_id/order 获取支付页面数据
+ * @api {post} {url}/api/movies/:mov_id/order 点击确认选座后返回数据
  * @apiName getBookData
  * @apiGroup Movie
  *
@@ -9,44 +9,51 @@
  * @apiParamExample Request Example
  *      {
  *      	"vh_mov_id":1,
- *      	"seat_id":1
+ *      	"seats_id": [1]
  *      }
  *
  * @apiSuccessExample OK
  *      {
- *        "status": "OK",
- *        "data": {
- *          "cinema": {
- *            "name": "大地影院",
- *            "address": "广州天河区奥体南路12号高德美居中心家居馆3楼"
- *          },
- *          "video_hell": {
- *            "name": "3号厅"
- *          },
- *          "movie": {
- *            "name": "守护者：世纪战元",
- *            "language": "俄语",
- *            "type": "2D",
- *            "starttime": "2017-05-10T02:00:00.000Z",
- *            "endtime": "2017-05-10T02:00:00.000Z",
- *            "price": "39"
- *          },
- *          "seat": {
- *            "seat_id": 2,
- *            "row_col": "0排1列"
- *          },
- *          "user": {
- *            "phone": "18819632589",
- *            "pay_num": "18819632589"
- *          }
- *        },
- *        "time": "2017-05-01T16:40:07.417Z",
- *        "msg": "数据获取成功",
- *        "user": {
- *          "phone": "18819632589",
- *          "name": null
- *        }
- *      }
+ *       "status": "OK",
+ *       "data": {
+ *         "cinema": {
+ *           "name": "大地影院",
+ *           "address": "广州天河区奥体南路12号高德美居中心家居馆3楼"
+ *         },
+ *         "video_hell": {
+ *           "name": "3号厅"
+ *         },
+ *         "movie": {
+ *           "name": "守护者：世纪战元",
+ *           "language": "俄语",
+ *           "type": "2D",
+ *           "starttime": "2017-05-10T02:00:00.000Z",
+ *           "endtime": "2017-05-10T02:00:00.000Z",
+ *           "price": "39"
+ *         },
+ *         "seats": [
+ *           {
+ *             "seat_id": 4,
+ *             "col_raw": "0排3列"
+ *           },
+ *           {
+ *             "seat_id": 5,
+ *             "col_raw": "0排4列"
+ *           }
+ *         ],
+ *         "user": {
+ *           "phone": "123456789",
+ *           "pay_num": "123456789"
+ *         }
+ *       },
+ *       "time": "2017-06-07T17:57:15.029Z",
+ *       "msg": "座位预定成功，请支付",
+ *       "user": {
+ *         "id": 3,
+ *         "phone": "123456789",
+ *         "name": null
+ *       }
+ *     }
  *
  * @apiErrorExample NOT_AUTHORIZED
  *      {
@@ -60,11 +67,17 @@
  * @apiErrorExample ERROR
  *      {
  *        "status": "ERROR",
- *        "data": null,
- *        "time": "2017-05-01T15:04:24.972Z",
- *        "msg": "该座位已被预定，请重新选择",
+ *        "data": {
+ *          "seats_id": [  // 已经被预定的座位id
+ *            4,
+ *            5
+ *          ]
+ *        },
+ *        "time": "2017-06-07T19:06:30.870Z",
+ *        "msg": "所选座位已被预定，请重新选择",
  *        "user": {
- *          "phone": "18819632589",
+ *          "id": 3,
+ *          "phone": "123456789",
  *          "name": null
  *        }
  *      }

@@ -25,14 +25,14 @@ function findBookDataById(vh_mov_id) {
 }
 
 /*
- * @description 根据 vh_mov_id 判断是否存在 seat_id
+ * @description 根据 vh_mov_id 判断是否存在 seats_id
  * @author 陈海城
  */
-function isSeatBelongToVideoHell(vh_mov_id, seat_id) {
+function isSeatBelongToVideoHell(vh_mov_id, seats_id) {
   const sql = `
     SELECT st.seat_id, st.row_col
     FROM video_movie vm, seat st
-    WHERE vm.vh_mov_id = ? AND vm.vh_id = st.vh_id AND st.seat_id = ?;
+    WHERE vm.vh_mov_id = ? AND vm.vh_id = st.vh_id AND st.seat_id in (?);
   `;
-  return queryDb(sql, [ vh_mov_id, seat_id ]);
+  return queryDb(sql, [ vh_mov_id, seats_id ]);
 }
