@@ -12,7 +12,8 @@ module.exports = {
 	findMovePlayingInfo,
 	getNowMovies,
 	getFetureMovies,
-	getSumGoodMovies
+	getSumGoodMovies,
+	searchMovie
 }
 
 /**
@@ -144,4 +145,16 @@ function getSumGoodMovies(sum) {
 		LIMIT ?;
 	`;
 	return queryDb(sql, [ sum ]);
+}
+
+/**
+ * @description 搜索影片
+ * @author 陈海城
+ */
+function searchMovie(searchKey) {
+	const sql = `
+		SELECT name, mov_id FROM movie
+		WHERE name LIKE ?;
+	`;
+	return queryDb(sql, [ '%' + searchKey + '%' ]);
 }

@@ -289,3 +289,26 @@
  *       }
  * 
  */
+
+/**
+ * @api {get} {url}/api/movies/search?name={...} 搜索影片
+ * @apiName searchMovie
+ * @apiGroup Movie
+ * 
+ * @apiParamExample Request Example
+ *     /api/movies/search?name=神奇
+ * 
+ * @apiSuccessExample OK
+ *      {
+ *        "status": "OK",
+ *        "data": [
+ *          {
+ *            "name": "神奇女侠 Wonder Woman",
+ *            "mov_id": 7
+ *          }
+ *        ],
+ *        "time": "2017-06-08T17:09:07.990Z",
+ *        "msg": "数据获取成功",
+ *        "user": null
+ *      }
+ */

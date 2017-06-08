@@ -10,7 +10,8 @@ module.exports = cowrapObj({
 	paramData,
 	getMovieDetail,
 	getMovieAndPlayingDetail,
-	getMoviesList
+	getMoviesList,
+	searchMovie
 })
 
 /*
@@ -147,6 +148,23 @@ function* getMoviesList(req, res, next) {
 		data.now = yield Movie.getNowMovies(4);
 		data.feature = yield Movie.getFetureMovies(4);
 		data.rank = yield Movie.getSumGoodMovies(10);
+	} catch(err) {
+		return handleError(req, res, 'DB_ERROR', err, '数据库查询错误');
+	}
+	return sendData(req, res, 'OK', data, '数据获取成功');
+}
+
+/**
+ * @description 搜索电影
+ * @author 陈海城
+ */
+function* searchMovie(req, res, next) {
+	let { name } = req.query;
+	if (!name)
+		return sendData(req, res, 'PARAM_ERROR', null, '参数错误');
+	let data;
+	try {
+		data = yield Movie.searchMovie(name);
 	} catch(err) {
 		return handleError(req, res, 'DB_ERROR', err, '数据库查询错误');
 	}

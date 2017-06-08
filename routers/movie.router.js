@@ -13,6 +13,8 @@ router.param('mov_id', mvCtrl.paramData);
 
 router.get('/', mvCtrl.getMoviesList);
 
+router.get('/search', mvCtrl.searchMovie);
+
 router.get('/:mov_id', mvCtrl.getMovieDetail);
 
 router.get('/:mov_id/cinemas', mvCtrl.getMovieAndPlayingDetail);

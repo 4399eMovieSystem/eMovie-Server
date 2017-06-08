@@ -107,6 +107,9 @@ function* login(req, res, next) {
   const { phone, password } = req.body;
   if (!phone || !password)
     return sendData(req, res, 'PARAM_ERROR', null, '参数错误');
+
+  if (req.session.user)
+    return sendData(req, res, 'OK', null, '登录成功');
   
   let data;
   try {
