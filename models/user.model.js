@@ -1,5 +1,5 @@
-/*
- * User model
+/**
+ * @description User model
  * @create 2017/4/29
  * @author 陈海城
  */
@@ -14,7 +14,7 @@ module.exports = {
 	updatePayNum
 }
 
-/*
+/**
  * @description 根据 phone 查找注册码
  * @author 陈海城
  */
@@ -40,7 +40,7 @@ function createOneRegisterRecord(phone, code) {
 	return queryDb(sql, values);
 }
 
-/*
+/**
  * @description 更新注册记录时间
  * @author 陈海城
  */
@@ -53,7 +53,7 @@ function updateRegisterTime(phone, code, create_at) {
 	return queryDb(sql, [ create_at, code, phone ]);
 }
 
-/*
+/**
  * @description 根据 phone 查找用户
  * @author 陈海城
  */

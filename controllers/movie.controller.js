@@ -9,7 +9,8 @@ const Movie = require('../models/movie.model');
 module.exports = cowrapObj({
 	paramData,
 	getMovieDetail,
-	getMovieAndPlayingDetail
+	getMovieAndPlayingDetail,
+	getMoviesList
 })
 
 /*
@@ -134,4 +135,20 @@ function* getMovieAndPlayingDetail(req, res, next) {
 		if (i < 10) i = "0" + i;
 	  return i;
 	}
+}
+
+/**
+ * @description 获取电影列表数据
+ * @author 陈海城
+ */
+function* getMoviesList(req, res, next) {
+	let data = {};
+	try {
+		data.now = yield Movie.getNowMovies(4);
+		data.feature = yield Movie.getFetureMovies(4);
+		data.rank = yield Movie.getSumGoodMovies(10);
+	} catch(err) {
+		return handleError(req, res, 'DB_ERROR', err, '数据库查询错误');
+	}
+	return sendData(req, res, 'OK', data, '数据获取成功');
 }

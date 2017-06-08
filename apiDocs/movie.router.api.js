@@ -165,3 +165,127 @@
  *        "user": null
  *      }
  */
+
+/**
+ * @api {get} {url}api/movies/ 获取电影列表
+ * @apiName getMoviesList
+ * @apiGroup Movie
+ * 
+ * @apiParamExample Request Example
+ *        /api/movies/
+ * 
+ * @apiSuccessExample OK
+ *       {
+ *         "status": "OK",
+ *         "data": {
+ *           "now": [
+ *             {
+ *               "mov_id": 1,
+ *               "name": "春娇救志明",
+ *               "grade": 7.7,
+ *               "imgUrl": "https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2456056900.webp"
+ *             },
+ *             {
+ *               "mov_id": 2,
+ *               "name": "记忆大师",
+ *               "grade": 7.4,
+ *               "imgUrl": "https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2455156816.webp"
+ *             },
+ *             {
+ *               "mov_id": 3,
+ *               "name": "速度与激情8",
+ *               "grade": 7.2,
+ *               "imgUrl": "https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2444256500.webp"
+ *             },
+ *             {
+ *               "mov_id": 4,
+ *               "name": "守护者：世纪战元",
+ *               "grade": 4,
+ *               "imgUrl": "https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2437307414.webp"
+ *             }
+ *           ],
+ *           "feature": [
+ *             {
+ *               "mov_id": 11,
+ *               "name": "在这世界的角落",
+ *               "grade": 7.7,
+ *               "imgUrl": "https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2384601603.webp"
+ *             },
+ *             {
+ *               "mov_id": 13,
+ *               "name": "非凡任务",
+ *               "grade": 6.4,
+ *               "imgUrl": "https://img1.doubanio.com/view/movie_poster_cover/lpst/public/p2453197648.webp"
+ *             },
+ *             {
+ *               "mov_id": 12,
+ *               "name": "声之形 聲の形",
+ *               "grade": 7.8,
+ *               "imgUrl": "https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2399176645.webp"
+ *             },
+ *             {
+ *               "mov_id": 14,
+ *               "name": "战争机器",
+ *               "grade": 6,
+ *               "imgUrl": "https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2458748574.webp"
+ *             }
+ *           ],
+ *           "rank": [
+ *             {
+ *               "mov_id": 10,
+ *               "name": "摔跤吧！爸爸 Dangal",
+ *               "grade": 9.2
+ *             },
+ *             {
+ *               "mov_id": 5,
+ *               "name": "釜山行",
+ *               "grade": 8.2
+ *             },
+ *             {
+ *               "mov_id": 12,
+ *               "name": "声之形 聲の形",
+ *               "grade": 7.8
+ *             },
+ *             {
+ *               "mov_id": 1,
+ *               "name": "春娇救志明",
+ *               "grade": 7.7
+ *             },
+ *             {
+ *               "mov_id": 6,
+ *               "name": "美国队长3",
+ *               "grade": 7.7
+ *             },
+ *             {
+ *               "mov_id": 11,
+ *               "name": "在这世界的角落",
+ *               "grade": 7.7
+ *             },
+ *             {
+ *               "mov_id": 2,
+ *               "name": "记忆大师",
+ *               "grade": 7.4
+ *             },
+ *             {
+ *               "mov_id": 8,
+ *               "name": "加勒比海盗5：死无对证",
+ *               "grade": 7.4
+ *             },
+ *             {
+ *               "mov_id": 7,
+ *               "name": "神奇女侠 Wonder Woman",
+ *               "grade": 7.3
+ *             },
+ *             {
+ *               "mov_id": 3,
+ *               "name": "速度与激情8",
+ *               "grade": 7.2
+ *             }
+ *           ]
+ *         },
+ *         "time": "2017-06-08T13:12:53.751Z",
+ *         "msg": "数据获取成功",
+ *         "user": null
+ *       }
+ * 
+ */

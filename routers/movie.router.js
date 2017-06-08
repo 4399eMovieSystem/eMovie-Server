@@ -11,6 +11,8 @@ module.exports = app => app.use('/api/movies', router);
 
 router.param('mov_id', mvCtrl.paramData);
 
+router.get('/', mvCtrl.getMoviesList);
+
 router.get('/:mov_id', mvCtrl.getMovieDetail);
 
 router.get('/:mov_id/cinemas', mvCtrl.getMovieAndPlayingDetail);

@@ -1,4 +1,4 @@
-/*
+/**
  * @description Movie model
  * @create at 2017/4/30
  * @author 陈海城
@@ -9,10 +9,13 @@ module.exports = {
 	findMovieList,
 	findMovieById,
 	findMoviePeople,
-	findMovePlayingInfo
+	findMovePlayingInfo,
+	getNowMovies,
+	getFetureMovies,
+	getSumGoodMovies
 }
 
-/*
+/**
  * @description 获取从 第(index + 1) 开始的 counts 部电影的信息
  * @author 陈海城
  */
@@ -25,7 +28,7 @@ function findMovieList(index, counts) {
 	return queryDb(sql, [ index, counts ]);
 }
 
-/*
+/**
  * @description 查找某部电影
  * @author 陈海城
  */
@@ -38,7 +41,7 @@ function findMovieById(mov_id) {
 	return queryDb(sql, [ mov_id ]);
 }
 
-/*
+/**
  * @description 批量查找电影的导演、编剧和主演
  * @param {Number/Array} mov_ids
  * @author 陈海城
@@ -76,7 +79,7 @@ function findMoviePeople(mov_ids) {
 	return queryDb(sql, [ mov_ids ]);
 }
 
-/*
+/**
  * @description 查找某部电影的所有播放地点信息
  * @author 陈海城
  */
@@ -95,4 +98,50 @@ function findMovePlayingInfo(mov_id) {
 		LEFT JOIN cinema cm ON cm.cin_id = vh.cin_id;
 	`;
 	return queryDb(sql, [ mov_id ]);
+}
+
+/**
+ * @description 获取 sum 部正在上映的电影
+ * @author 陈海城
+ */
+function getNowMovies(sum) {
+	const sql = `
+		SELECT DISTINCT(mov_id), name, grade, imgUrl
+		FROM (
+			SELECT mv.mov_id, mv.name, mv.grade, imgUrl
+			FROM movie mv, video_movie vm
+			WHERE mv.mov_id = vm.mov_id AND vm.starttime <= NOW()
+			ORDER BY vm.starttime DESC) AS temp
+		LIMIT ?;
+	`;
+	return queryDb(sql, [ sum ]);
+}
+
+/**
+ * @description 获取 sum 部即将上映的电影
+ * @author 陈海城
+ */
+function getFetureMovies(sum) {
+	const sql = `
+		SELECT mov_id, name, grade, imgUrl
+		FROM movie
+		WHERE starttime > NOW()
+		ORDER BY starttime ASC
+		LIMIT ?;
+	`;
+	return queryDb(sql, [ sum ]);
+}
+
+/**
+ * @description 获取前 sum 部好评电影
+ * @author 陈海城
+ */
+function getSumGoodMovies(sum) {
+	const sql = `
+		SELECT mov_id, name, grade
+		FROM movie
+		ORDER BY grade DESC
+		LIMIT ?;
+	`;
+	return queryDb(sql, [ sum ]);
 }
