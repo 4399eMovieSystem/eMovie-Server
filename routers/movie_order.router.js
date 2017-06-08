@@ -10,3 +10,5 @@ module.exports = app => app.use('/:mov_id/order', router);
 router.post('/', mdCtrl.getBookData);
 
 router.post('/cancel', mdCtrl.cancleOrder);
+
+router.post('/makesure', mdCtrl.makeSureTicket);

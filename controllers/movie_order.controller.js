@@ -6,36 +6,35 @@
 const { sendData, cowrapObj, handleError } = require('../utils');
 const MovieOrder = require('../models/movie_order.model');
 const MovieSeat = require('../models/movie_seat.model');
+const User = require('../models/user.model');
 
 module.exports = cowrapObj({
 	getBookData,
-	cancleOrder
+	cancleOrder,
+	makeSureTicket
 })
 
-/*
+/**
  * @description 点击确认选座后返回数据
  * @author 陈海城
  */
 function* getBookData(req, res, next) {
-	const { vh_mov_id, seats_id } = req.body;
-	if (!vh_mov_id || !seats_id)
+	const { vh_mov_id, seats_id, price } = req.body;
+	if (!vh_mov_id || !seats_id || price === undefined)
 		return sendData(req, res, 'PARAM_ERROR', null, '参数错误');
 	let data, seat;
 	try {
 		// 判断座位是否空闲
 		data = yield MovieSeat.isValid(seats_id);
-		console.log(data);
 		if (data.length != seats_id.length) {
 			let temp = Object.assign(
 				{}, ...(data.map(item => {
-					let id = item.seat_id;
-					return { id: true }
+					return JSON.parse(`{"${item.seat_id}":true}`);
 				}))
 			);
-			console.log(temp);
 			return sendData(req, res, 'ERROR', 
 				{
-					seats_id: seats_id.filter(item => temp[item.seat_id] === undefined)
+					seats_id: seats_id.filter(id => temp[id] === undefined)
 				},
 				'所选座位已被预定，请重新选择');
 		}
@@ -44,12 +43,21 @@ function* getBookData(req, res, next) {
 		if (data.length != seats_id.length)
 			return sendData(req, res, 'ERROR', { seats_id: data.map(item => item.seat_id) }, '所选座位不属于该放映厅');
 		seats = data;
-		// 设置座位状态
-		yield MovieSeat.setSeatStatus(seats_id, 1, req.paramData.user.user_id);
 		// 获取支付页面所需数据
 		data = yield MovieOrder.findBookDataById(vh_mov_id)
-		if (!data.length) return sendData(req, res, 'ERROR', null, '该放映厅不播放该电影');
+		if (!data.length)
+			return sendData(req, res, 'ERROR', null, '该放映厅不播放该电影');
+		if (price != data[0].price * seats_id.length)
+			return sendData(req, res, 'ERROR', null, `价格错误，应为${data[0].price * seats_id.length}元`);
+		// 设置座位状态
+		yield MovieSeat.setSeatStatus(seats_id, 1, req.paramData.user.user_id);
+		// 生成订单
+		let tcks = yield MovieOrder.createTickes(req.paramData.user
+		.user_id, vh_mov_id, seats_id);
 		data = _rebuild(data[0], seats, req.paramData.movie);
+		data.tcks_id = [];
+		for (let i = 0; i < tcks.affectedRows; ++i)
+			data.tcks_id.push(tcks.insertId + i);
 		data.user = {
 			phone: req.session.user.phone,
 			pay_num: req.session.user.phone
@@ -87,7 +95,7 @@ function* getBookData(req, res, next) {
 	}
 }
 
-/*
+/**
  * @description 撤销未支付订单
  * @author 陈海城
  */
@@ -107,6 +115,34 @@ function* cancleOrder(req, res, next) {
 		yield MovieSeat.setSeatStatus(seat_id, 0);
 		return sendData(req, res, 'OK', null, '订单撤销成功');
 	} catch(err) {
+		return handleError(req, res, 'DB_ERROR', err, '数据库查询错误');
+	}
+}
+
+/**
+ * @description 批量确认支付订单
+ * @author 陈海城
+ */
+function* makeSureTicket(req, res, next) {
+	let { tcks_id, pay_num, pay_pwd, price } = req.body;
+	if (!tcks_id || !pay_num || !pay_pwd || price === undefined)
+		return sendData(req, res, 'PARAM_ERROR', null, '参数错误');
+	let data;
+	try {
+		// 判断tcks_id的持有者是否为用户本人
+		data = yield MovieOrder.checkTicketsBelongToUser(tcks_id, req.paramData.user.user_id);
+		if (data.length != tcks_id.length)
+			return sendData(req, res, 'PERSSION_ERROR', null, '支付需订票者权限');
+		// 更新支付账号
+		yield User.updatePayNum(req.paramData.user.user_id, pay_num);
+		// TODO 支付逻辑
+		// 票价校验
+		data = yield MovieOrder.findBookDataById(data[0].vh_mov_id);
+		if (price != data[0].price * tcks_id.length)
+			return sendData(req, res, 'ERROR', null, `价格错误，应为${data[0].price * tcks_id.length}元`);
+		yield MovieOrder.changeTickesState(tcks_id, 1);
+		return sendData(req, res, 'OK', null, '支付成功');
+} catch(err) {
 		return handleError(req, res, 'DB_ERROR', err, '数据库查询错误');
 	}
 }

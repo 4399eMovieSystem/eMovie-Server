@@ -10,7 +10,8 @@ module.exports = {
 	createOneRegisterRecord,
 	updateRegisterTime,
 	findUserByPhone,
-	createUser
+	createUser,
+	updatePayNum
 }
 
 /*
@@ -65,7 +66,7 @@ function findUserByPhone(phone) {
 	return queryDb(sql, [ phone ]);
 }
 
-/*
+/**
  * @description 创建用户
  * @author 陈海城
  */
@@ -76,4 +77,15 @@ function createUser(phone, password, name = null, pay_num = null) {
 	`;
 	const values = { phone, password, name, pay_num };
 	return queryDb(sql, values);
+}
+
+/**
+ * @description 更新支付账号
+ * @author 陈海城
+ */
+function updatePayNum(user_id, pay_num) {
+	const sql = `
+		UPDATE user SET pay_num = ? WHERE user_id = ?;
+	`;
+	return queryDb(sql, [ pay_num, user_id ]);
 }

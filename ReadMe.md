@@ -117,8 +117,9 @@ ctrl+t   ctrl+b  //调回函数
 | :--: | :--: | :--:| :--: | :--: |
 | **tkt_id** | bigint(20) | No | | 订票id |
 | user_id | bigint(20) | No | | 用户id |
-| video_movie_time | bigint(20) | No | | 放映厅-电影-播放时间id |
+| vh_mov_id | bigint(20) | No | | 放映厅-电影-播放时间id |
 | seat_id | bigint(20) | No | | 座位id |
+| status | Boolean | Yes | 0 | 0——订单未支付，1——订单已支付 |
 | create_at | datetime | Yes | CURRENT_TIMESTAMP | 订单创建时间 |
 
 ### cinema_comment表（影院评论表）

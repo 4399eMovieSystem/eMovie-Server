@@ -68,7 +68,7 @@
  */
 
 /**
- * @api {get} {url}/api/movie/:mov_id/cinemas 获取具体某部电影+播放该电影的影院-影厅信息
+ * @api {get} {url}/api/movies/:mov_id/cinemas 获取具体某部电影+播放该电影的影院-影厅信息
  * @apiName getMovieAndPlayingDetail
  * @apiGroup Movie
  *
