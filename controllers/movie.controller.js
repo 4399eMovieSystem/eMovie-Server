@@ -116,6 +116,7 @@ function* getMovieAndPlayingDetail(req, res, next) {
 				}
 				temp[ptr].video_hell.push({
 					vh_mov_id: item.vh_mov_id,
+					vh_id: item.vh_id,
 					name: item.vh_name,
 					price: item.price,
 					starttime: _checkTime(item.starttime.getHours()) + ':' + _checkTime(item.starttime.getMinutes()),

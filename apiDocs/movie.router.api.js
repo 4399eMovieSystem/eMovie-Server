@@ -79,28 +79,45 @@
  *      {
  *        "status": "OK",
  *        "data": {
- *          "mov_id": 4,
- *          "name": "守护者：世纪战元",
- *          "grade": 4,
- *          "starttime": "2017-05-18T16:00:00.000Z",
- *          "type": "动作 / 科幻",
- *          "region": "俄罗斯",
- *          "language": "俄语",
- *          "length": 100,
- *          "imgUrl": "https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p2437307414.webp",
+ *          "mov_id": 5,
+ *          "name": "釜山行",
+ *          "grade": 8.2,
+ *          "starttime": "2016-07-19T16:00:00.000Z",
+ *          "type": "动作 / 惊悚 / 灾难",
+ *          "region": "韩国",
+ *          "language": "韩语",
+ *          "length": 118,
+ *          "imgUrl": "https://img1.doubanio.com/view/movie_poster_cover/lpst/public/p2360940399.webp",
  *          "prevueUrl": null,
- *          "description": "<span property=\"v:summary\" class=\"\">\n\n                                　　一直从事兵器研究的邪恶的克拉托夫教授欲用生物兵器达成自己的野心，在俄罗斯境内的各大城市制造了一系列大规模爆炸恐怖袭击。为了消灭邪恶势力，拯救面临生物兵器毁灭的国家，俄罗斯国防部派出了冷战时期创建的名为“爱国者”的超级英雄团队，各个英雄异于常人，身怀特技，与号称统 治世界的邪恶教授展开了一场殊死较量。\n\n                        </span>",
+ *          "description": "<span property=\"v:summary\" class=\"\">\n\n                                　　证券公司基金管理人石宇（孔侑 饰）光鲜精干，却也是个重利轻义之徒。妻子为此与之决裂，女儿秀安（金秀安 饰）则对如此自私的父亲越来越失望，决定前往釜山和母亲生活。在秀安生日这天，石宇抽出时间陪伴女儿登上开往釜山的特快列车。而与此同时，城市四处出现了极为可疑的暴动事件。政府极力洗白无法掩盖丧尸肆虐的事实，即便懵然无知的列车乘客也因为不速之客的到来而堕入恐慌绝望的地狱中。开车的刹那，一名感染者冲入车厢，而她很快尸变并对目光所及之处的健康人展开血腥屠杀。未过多久，丧尸便呈几何数爆发性地增长。石宇被迫和幸存者的乘客们在逼仄的空间中奋力求生。\n\n                                    <br>\n                                　　通往釜山的遥遥旅途布满杀机，危难时刻每个幸存者的人性也承受巨大的考验……\n\n                        </span>",
  *          "directors": [
  *            {
- *              "name": "萨里·奥德赛耶",
- *              "id": 20
+ *              "name": "延尚昊",
+ *              "id": 22
  *            }
  *          ],
- *          "scriptwriters": [],
+ *          "scriptwriters": [
+ *            {
+ *              "name": "延尚昊",
+ *              "id": 22
+ *            }
+ *          ],
  *          "actors": [
  *            {
- *              "name": "艾琳娜·拉尼娜",
- *              "id": 21
+ *              "name": "金秀安",
+ *              "id": 26
+ *            },
+ *            {
+ *              "name": "孔侑",
+ *              "id": 23
+ *            },
+ *            {
+ *              "name": "郑有美",
+ *              "id": 24
+ *            },
+ *            {
+ *              "name": "马东锡",
+ *              "id": 25
  *            }
  *          ],
  *          "play_cinemas": [
@@ -113,37 +130,104 @@
  *                  "date": "4月10日",
  *                  "video_hell": [
  *                    {
+ *                      "vh_mov_id": 5,
  *                      "vh_id": 1,
  *                      "name": "3号厅",
- *                      "price": "39",
- *                      "starttime": "16:00",
- *                      "endtime": "17:30"
+ *                      "price": "40",
+ *                      "starttime": "18:00",
+ *                      "endtime": "19:30"
  *                    },
  *                    {
- *                      "vh_id": 3,
- *                      "name": "1号厅",
- *                      "price": "19",
- *                      "starttime": "09:30",
- *                      "endtime": "10:30"
+ *                      "vh_mov_id": 10,
+ *                      "vh_id": 2,
+ *                      "name": "2号厅",
+ *                      "price": "39",
+ *                      "starttime": "12:40",
+ *                      "endtime": "13:30"
+ *                    },
+ *                    {
+ *                      "vh_mov_id": 142,
+ *                      "vh_id": 1,
+ *                      "name": "3号厅",
+ *                      "price": "40",
+ *                      "starttime": "18:00",
+ *                      "endtime": "19:30"
+ *                    },
+ *                    {
+ *                      "vh_mov_id": 147,
+ *                      "vh_id": 2,
+ *                      "name": "2号厅",
+ *                      "price": "39",
+ *                      "starttime": "12:40",
+ *                      "endtime": "13:30"
+ *                    }
+ *                  ]
+ *                },
+ *                {
+ *                  "date": "5月10日",
+ *                  "video_hell": [
+ *                    {
+ *                      "vh_mov_id": 279,
+ *                      "vh_id": 1,
+ *                      "name": "3号厅",
+ *                      "price": "40",
+ *                      "starttime": "18:00",
+ *                      "endtime": "19:30"
+ *                    },
+ *                    {
+ *                      "vh_mov_id": 284,
+ *                      "vh_id": 2,
+ *                      "name": "2号厅",
+ *                      "price": "39",
+ *                      "starttime": "12:40",
+ *                      "endtime": "13:30"
  *                    }
  *                  ]
  *                }
  *              ]
  *            },
+ *            ......
  *            {
- *              "cin_id": 4,
- *              "name": "天宜影院",
- *              "address": "大学城西五路华师教学区西门正对面",
+ *              "cin_id": 10,
+ *              "name": "天幕新彩云国际影城",
+ *              "address": "\n\n北京市海淀区北三环中路67号中视云投大厦1F-3F 天幕新彩云影城",
  *              "detail": [
  *                {
  *                  "date": "4月10日",
  *                  "video_hell": [
  *                    {
- *                      "vh_id": 13,
- *                      "name": "4号厅",
- *                      "price": "19",
- *                      "starttime": "16:00",
- *                      "endtime": "17:30"
+ *                      "vh_mov_id": 114,
+ *                      "vh_id": 39,
+ *                      "name": "1号厅",
+ *                      "price": "32",
+ *                      "starttime": "18:00",
+ *                      "endtime": "19:30"
+ *                    }
+ *                  ]
+ *                },
+ *                {
+ *                  "date": "5月10日",
+ *                  "video_hell": [
+ *                    {
+ *                      "vh_mov_id": 388,
+ *                      "vh_id": 39,
+ *                      "name": "1号厅",
+ *                      "price": "32",
+ *                      "starttime": "18:00",
+ *                      "endtime": "19:30"
+ *                    }
+ *                  ]
+ *                },
+ *                {
+ *                  "date": "8月10日",
+ *                  "video_hell": [
+ *                    {
+ *                      "vh_mov_id": 530,
+ *                      "vh_id": 39,
+ *                      "name": "1号厅",
+ *                      "price": "32",
+ *                      "starttime": "18:00",
+ *                      "endtime": "19:30"
  *                    }
  *                  ]
  *                }
@@ -151,7 +235,7 @@
  *            }
  *          ]
  *        },
- *        "time": "2017-04-30T19:35:43.482Z",
+ *        "time": "2017-06-09T15:26:17.157Z",
  *        "msg": "电影+播放信息获取成功",
  *        "user": null
  *      }
