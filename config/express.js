@@ -91,7 +91,8 @@ function setExpressAuth(app) {
     '/api/users/register',
     '/api/users/register/sms',
     '/api/movies',
-    '/api/people'
+    '/api/people',
+    '/api/cinema'
   ];
   app.all('/*', function(req, res, next) {
     if (!req.session.user && !isWhiteList(req.path) && req.method === 'POST') {
@@ -114,7 +115,8 @@ function setExpressRoutes(app) {
   const routes = [
     'user',
     'movie',
-    'people'
+    'people',
+    'cinema'
   ];
   routes.forEach(route => require(config.root + '/routers/' + route + '.router.js')(app));
 }

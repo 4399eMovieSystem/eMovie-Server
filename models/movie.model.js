@@ -13,7 +13,9 @@ module.exports = {
 	getNowMovies,
 	getFetureMovies,
 	getSumGoodMovies,
-	searchMovie
+	searchMovie,
+	getMoviesInfo,
+	getMoviesVedioHellByCinId
 }
 
 /**
@@ -157,4 +159,28 @@ function searchMovie(searchKey) {
 		WHERE name LIKE ?;
 	`;
 	return queryDb(sql, [ '%' + searchKey + '%' ]);
+}
+
+/**
+ * @description 批量查找影片信息
+ * @author 陈海城
+ */
+function getMoviesInfo(mov_ids) {
+	const sql = `
+		SELECT * FROM movie WHERE mov_id in (?); 
+	`;
+	return queryDb(sql, [ mov_ids ]);
+}
+
+/**
+ * @description 批量指定影院的播放厅信息
+ * @author 陈海城
+ */
+function getMoviesVedioHellByCinId(cin_id, mov_ids) {
+	const sql = `
+		SELECT vm.vh_mov_id, vm.mov_id, vm.type, vm.starttime, vm.price, vh.name
+		FROM video_movie vm, video_hell vh
+		WHERE vm.vh_id = vh.vh_id AND vh.cin_id = ? AND vm.mov_id in (?);
+	`;
+	return queryDb(sql, [ cin_id, mov_ids ]);
 }

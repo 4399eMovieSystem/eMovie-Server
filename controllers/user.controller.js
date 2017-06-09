@@ -109,7 +109,7 @@ function* login(req, res, next) {
     return sendData(req, res, 'PARAM_ERROR', null, '参数错误');
 
   if (req.session.user)
-    return sendData(req, res, 'OK', null, '登录成功');
+    return sendData(req, res, 'OK', null, '已经登录，无法重复登录');
   
   let data;
   try {
