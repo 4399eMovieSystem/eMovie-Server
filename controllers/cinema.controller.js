@@ -70,12 +70,12 @@ function* getCinDetailInfo(req, res, next) {
 			}
     });
     // 整合播放厅信息
-    // 1. 按照播放厅编号进行分类
+    // 1. 按照 mov_id 进行分类
     let temp = {};
     data.vedio_hells.forEach(vedio_hell => {
-      if (temp[vedio_hell.name] === undefined)
-        temp[vedio_hell.name] = [];
-      temp[vedio_hell.name].push(_removeProps(vedio_hell, 'name'));
+      if (temp[vedio_hell.mov_id] === undefined)
+        temp[vedio_hell.mov_id] = [];
+      temp[vedio_hell.mov_id].push(_removeProps(vedio_hell, 'mov_id'));
     });
     // 2. 组内按照日期分类
     let result = {};
